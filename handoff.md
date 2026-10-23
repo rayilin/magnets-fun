@@ -15,6 +15,7 @@ GitHub Pages 部署成功：<https://rayilin.github.io/magnets-fun/>
 | 簡報 24 頁 16:9 | ✅ `簡報/磁鐵好好玩_教學簡報.pptx` |
 | 簡報圖檔 1600×900 ×24 | ✅ `教學網頁/slides/slide01–24.jpg`（PowerPoint COM 匯出） |
 | 教學網頁（11 區） | ✅ `教學網頁/index.html`，0 console error |
+| 測驗語音朗讀 | ✅「🔊 念題目」按鈕（Web Speech API、zh-TW、rate 0.9），換題／作答自動停止 |
 | 對戰（battle.html／server.js／30 題） | ✅ 區網模式可用；雲端後端**尚未部署** |
 | 素材圖庫 147 張 | ✅ `media/img`＋`media/thumb`＋`images.js` |
 | 旁白動畫 4 段 MP4 | ❌ **未做**（規劃排在第二批） |
@@ -36,6 +37,10 @@ GitHub Pages 部署成功：<https://rayilin.github.io/magnets-fun/>
   - docx → PDF：Word COM `Document.SaveAs([ref]$path,[ref]17)`
 - **測驗題數**：網頁內建測驗是 **10 題**（`check_site.js` 的標準；超過會被判失敗），
   對戰題庫另備 **30 題**（含解析）。規劃表原寫「測驗 30 題」→ 已調整為 10＋30。
+- **測驗語音**：用瀏覽器內建 `speechSynthesis`（不須 API key、不須網路音檔）。
+  Chrome／Edge 在 Windows 有 Microsoft 雅婷／涵涵（zh-TW）；iPad Safari 亦有中文語音。
+  按鈕會念「第 N 題＋題目＋A/B/C/D 選項」，再按一次停止；作答或換題會自動 `cancel()`。
+  不支援的瀏覽器直接不顯示按鈕。若在 iPad 上沒聲音，先確認系統「設定 → 輔助使用 → 朗讀內容」與音量。
 
 ## ➡️ 下一步（依優先順序）
 1. **對戰後端**：Render → New + → Blueprint → 選 `rayilin/magnets-fun` → Apply。
@@ -65,7 +70,7 @@ python 工具\build_images.py    # 147 張圖 → media/
 - 簡報內容為自行編寫＋課綱查證（INe-Ⅱ-7），**未逐字對照教科書頁面**，定稿前建議對一次
 
 ## 🕐 最後更新
-- 時間：2026-10-23 12:35
+- 時間：2026-10-23 14:12
 - 更新者：OpenCode（DeepSeek V4.1 Flash Free） @ DESKTOP-4475O68
-- Git：✅ 已推（`main`，commit `308356e` 之後）
-- Pages：✅ 部署成功（run 39898832971 success）
+- Git：✅ 已推（`main`，commit `e24aed0` 加入測驗語音朗讀）
+- Pages：✅ 部署成功（run 39898832971／39909937037 success）
