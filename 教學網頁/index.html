@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>磁鐵好好玩｜翰林三上自然 第4單元</title>
+<meta name="description" content="國小三年級自然「磁鐵好好玩」教學網頁：4 節課課程地圖、互動實驗、教學簡報、10 題測驗、參考影片、抽籤計時器與兩人對戰。">
+<style>
+  :root{
+    --bg:#FAF7F0; --bg2:#F3EEE1; --card:#FFFFFF;
+    --ink:#35544A; --ink2:#6B7B72; --ink3:#9AA69F;
+    --accent:#C06A2B; --accent-soft:#F6E7D8;
+    --n:#C0392B; --s:#2C5F8A;
+    --line:#E6DECC; --ok:#3F7D5A; --bad:#B4483C;
+    --radius:18px; --maxw:1080px;
+    --shadow:0 2px 10px rgba(53,84,74,.06), 0 12px 30px rgba(53,84,74,.05);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"微軟正黑體","Microsoft JhengHei","Noto Sans TC","PingFang TC",system-ui,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block}
+  a{color:var(--accent); text-decoration:none}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+  .eyebrow{font-size:13px; letter-spacing:.16em; color:var(--accent); font-weight:700; margin:0 0 8px}
+  h2{font-size:30px; margin:0 0 10px; letter-spacing:.01em}
+  h3{font-size:19px; margin:0 0 8px}
+  .lead{color:var(--ink2); margin:0 0 28px; font-size:16px}
+  section{padding:64px 0; border-top:1px solid var(--line)}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+    background:var(--ink); color:#fff; border:0; border-radius:999px;
+    padding:12px 22px; font-size:15px; font-family:inherit; font-weight:600;
+    transition:.2s; text-decoration:none;
+  }
+  .btn:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(53,84,74,.2)}
+  .btn.accent{background:var(--accent)}
+  .btn.ghost{background:transparent; color:var(--ink); border:1.5px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--ink); box-shadow:none}
+  .btn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+
+  /* ── 導覽 ── */
+  .nav{position:sticky; top:0; z-index:50; background:rgba(250,247,240,.94);
+       backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex; align-items:center; gap:6px; height:56px; overflow-x:auto; scrollbar-width:none}
+  .nav .wrap::-webkit-scrollbar{display:none}
+  .nav .brand{font-weight:700; margin-right:10px; white-space:nowrap; color:var(--ink)}
+  .nav a{padding:6px 12px; border-radius:999px; font-size:14px; color:var(--ink2); white-space:nowrap}
+  .nav a:hover{background:var(--bg2); color:var(--ink)}
+
+  /* ── Hero ── */
+  .hero{padding:72px 0 56px; border-top:0}
+  .hero .wrap{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center}
+  .hero h1{font-size:56px; line-height:1.15; margin:6px 0 14px; letter-spacing:.02em}
+  .hero .sub{font-size:17px; color:var(--ink2); margin:0 0 26px; max-width:30em}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px}
+  .chip{background:var(--card); border:1px solid var(--line); border-radius:999px;
+        padding:6px 14px; font-size:13.5px; color:var(--ink2)}
+  .chip b{color:var(--ink)}
+  .hero-art{position:relative}
+  .hero-art img{filter:saturate(.9)}
+  .hero-cta{display:flex; gap:12px; flex-wrap:wrap}
+
+  /* ── 課程地圖 ── */
+  .lessons{display:grid; gap:16px}
+  .lesson{display:grid; grid-template-columns:76px 1fr; gap:20px; padding:22px 24px; align-items:start}
+  .lesson .no{font-size:34px; font-weight:800; color:var(--accent); line-height:1; text-align:center}
+  .lesson .no small{display:block; font-size:11px; color:var(--ink3); font-weight:600; letter-spacing:.1em; margin-top:6px}
+  .lesson h3{margin-bottom:4px; font-size:20px}
+  .lesson .goal{color:var(--ink2); font-size:15px; margin:0 0 10px}
+  .lesson .acts{display:flex; flex-wrap:wrap; gap:6px; margin:0; padding:0; list-style:none}
+  .lesson .acts li{font-size:13px; background:var(--bg2); border-radius:8px; padding:4px 10px; color:var(--ink)}
+  .lesson .imgs{display:flex; gap:6px; margin-top:12px; flex-wrap:wrap}
+  .lesson .imgs img{width:52px; height:52px; object-fit:contain; background:#fff; border:1px solid var(--line); border-radius:8px; padding:3px}
+
+  /* ── 互動實驗室 ── */
+  .labs{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  .lab{padding:22px; display:flex; flex-direction:column}
+  .lab .tag{font-size:12px; color:var(--accent); font-weight:700; letter-spacing:.1em}
+  .lab h3{margin:4px 0 6px}
+  .lab p.hint{font-size:13.5px; color:var(--ink2); margin:0 0 14px; min-height:40px}
+  .lab .stage{background:var(--bg2); border-radius:12px; padding:14px; flex:1; display:flex;
+              flex-direction:column; justify-content:center; align-items:center; min-height:200px; text-align:center}
+  .lab .stage img{max-height:120px; object-fit:contain}
+  .lab .name{font-weight:700; margin-top:8px}
+  .lab .opts{display:flex; gap:8px; margin-top:14px; width:100%}
+  .lab .opts button{flex:1; padding:10px; border-radius:10px; border:1.5px solid var(--line);
+                    background:#fff; font-family:inherit; font-size:14px; cursor:pointer; color:var(--ink)}
+  .lab .opts button:hover{border-color:var(--ink)}
+  .lab .fb{margin-top:12px; font-size:14px; min-height:44px}
+  .lab .fb.ok{color:var(--ok)} .lab .fb.bad{color:var(--bad)}
+  .progress{font-size:12.5px; color:var(--ink3); margin-top:8px}
+
+  /* ── 簡報播放器 ── */
+  .deck{max-width:960px; margin:0 auto}
+  .deck .frame{position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow)}
+  .deck .frame img{width:100%; aspect-ratio:16/9; object-fit:contain; background:#fff}
+  .deck .bar{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px}
+  .deck .count{font-size:14px; color:var(--ink2); font-variant-numeric:tabular-nums}
+  .deck .thumbs{display:flex; gap:8px; overflow-x:auto; padding:14px 2px 4px}
+  .deck .thumbs img{width:92px; border-radius:6px; border:2px solid transparent; cursor:pointer; opacity:.6}
+  .deck .thumbs img:hover{opacity:1}
+  .deck .thumbs img.on{border-color:var(--accent); opacity:1}
+
+  /* ── 測驗 ── */
+  .quiz{max-width:760px; margin:0 auto}
+  .qcard{padding:28px}
+  .qimg{max-height:170px; margin:0 auto 18px}
+  .qtext{font-size:21px; font-weight:700; margin:0 0 20px; line-height:1.6}
+  .qopts{display:grid; gap:10px}
+  .qopt{display:flex; gap:12px; align-items:flex-start; text-align:left; padding:14px 16px;
+        border:1.5px solid var(--line); background:#fff; border-radius:12px; cursor:pointer;
+        font-family:inherit; font-size:16px; color:var(--ink); transition:.15s}
+  .qopt:hover:not(:disabled){border-color:var(--ink); background:var(--bg)}
+  .qopt .k{font-weight:800; color:var(--ink3); min-width:18px}
+  .qopt.ok{border-color:var(--ok); background:#EEF6F0}
+  .qopt.ok .k{color:var(--ok)}
+  .qopt.bad{border-color:var(--bad); background:#FBEFED}
+  .qopt.bad .k{color:var(--bad)}
+  .qfb{margin-top:16px; padding:14px 16px; border-radius:12px; background:var(--bg2); font-size:15px; display:none}
+  .qfb.show{display:block}
+  .qfb b{color:var(--ink)}
+  .qbar{margin-top:18px; display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--ink2)}
+  .result{text-align:center; padding:28px}
+  .result .score{font-size:64px; font-weight:800; color:var(--accent); line-height:1}
+  .result .score small{font-size:20px; color:var(--ink3); font-weight:600}
+
+  /* ── 影片 ── */
+  .videos{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  .video{overflow:hidden; display:flex; flex-direction:column; transition:.2s}
+  .video:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(53,84,74,.12)}
+  .thumb{position:relative; aspect-ratio:16/9; background:var(--bg2)}
+  .thumb img{width:100%; height:100%; object-fit:cover}
+  .thumb .play{position:absolute; inset:0; display:grid; place-items:center}
+  .thumb .play span{width:54px; height:54px; border-radius:50%; background:rgba(0,0,0,.65);
+                    display:grid; place-items:center; color:#fff; font-size:20px}
+  .video .meta{padding:14px 16px 18px}
+  .video .meta b{display:block; font-size:15.5px; line-height:1.5; margin-bottom:4px}
+  .video .meta span{font-size:13px; color:var(--ink3)}
+
+  /* ── 工具 ── */
+  .tools{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  .tool{padding:24px}
+  .draw-num{font-size:72px; font-weight:800; line-height:1; color:var(--accent); text-align:center; margin:10px 0 4px; font-variant-numeric:tabular-nums}
+  .draw-num.idle{color:var(--ink3); font-size:30px; padding:20px 0}
+  .tool .row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap}
+  .pool{font-size:13px; color:var(--ink3); text-align:center; margin-top:10px; line-height:1.6}
+  .timer{font-size:64px; font-weight:800; text-align:center; font-variant-numeric:tabular-nums; color:var(--ink); margin:8px 0}
+  .timer.warn{color:var(--bad)}
+  .presets{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:6px}
+  .presets button{border:1px solid var(--line); background:#fff; border-radius:999px; padding:6px 14px;
+                  font-family:inherit; font-size:13px; cursor:pointer; color:var(--ink2)}
+  .presets button:hover{border-color:var(--ink); color:var(--ink)}
+
+  /* ── 對戰 ── */
+  .battle{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow)}
+  .battle iframe{width:100%; height:600px; border:0; display:block}
+  .note{font-size:14px; color:var(--ink2); margin-top:14px; line-height:1.8}
+
+  /* ── 圖庫 ── */
+  .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px}
+  .filters button{border:1px solid var(--line); background:#fff; border-radius:999px; padding:8px 16px;
+                  font-family:inherit; font-size:14px; cursor:pointer; color:var(--ink2)}
+  .filters button.on{background:var(--ink); color:#fff; border-color:var(--ink)}
+  .grid{display:grid; grid-template-columns:repeat(8,1fr); gap:10px}
+  .grid figure{margin:0; background:#fff; border:1px solid var(--line); border-radius:10px; padding:8px; cursor:zoom-in; transition:.15s}
+  .grid figure:hover{border-color:var(--accent); transform:translateY(-2px)}
+  .grid img{aspect-ratio:1; object-fit:contain; width:100%}
+  .grid figcaption{font-size:11px; color:var(--ink3); text-align:center; margin-top:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+  /* ── 下載 ── */
+  .dl{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .dl a{display:flex; flex-direction:column; gap:6px; padding:20px; color:var(--ink)}
+  .dl a b{font-size:16px}
+  .dl a span{font-size:13px; color:var(--ink2)}
+  .dl a em{font-style:normal; font-size:12px; color:var(--accent); font-weight:700}
+
+  /* ── Lightbox ── */
+  .lb{position:fixed; inset:0; background:rgba(28,36,32,.86); display:none; place-items:center; z-index:100; padding:24px}
+  .lb.on{display:grid}
+  .lb img{max-height:78vh; max-width:92vw; background:#fff; border-radius:10px; padding:10px}
+  .lb p{color:#fff; text-align:center; margin:14px 0 0; font-size:15px}
+  .lb .close{position:absolute; top:18px; right:22px; color:#fff; font-size:34px; cursor:pointer; line-height:1}
+
+  footer{padding:40px 0 56px; color:var(--ink3); font-size:13.5px; border-top:1px solid var(--line)}
+  footer a{color:var(--ink2)}
+  .toast{position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px);
+         background:var(--ink); color:#fff; padding:10px 20px; border-radius:999px; font-size:14px;
+         opacity:0; pointer-events:none; transition:.25s; z-index:120}
+  .toast.on{opacity:1; transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr}
+    .hero h1{font-size:40px}
+    .hero-art{order:-1; max-width:320px}
+    .labs,.videos,.dl{grid-template-columns:1fr}
+    .tools{grid-template-columns:1fr}
+    .grid{grid-template-columns:repeat(4,1fr)}
+    .lesson{grid-template-columns:56px 1fr; padding:18px}
+    .lesson .no{font-size:26px}
+    section{padding:48px 0}
+    h2{font-size:25px}
+    .battle iframe{height:520px}
+  }
+  @media (max-width:520px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .hero h1{font-size:34px}
+    .qtext{font-size:18px}
+    .draw-num{font-size:56px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <span class="brand">磁鐵好好玩</span>
+    <a href="#map">課程地圖</a>
+    <a href="#labs">互動實驗</a>
+    <a href="#deck">教學簡報</a>
+    <a href="#quiz">測驗</a>
+    <a href="#videos">影片</a>
+    <a href="#tools">教學工具</a>
+    <a href="#battle">兩人對戰</a>
+    <a href="#gallery">素材圖庫</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">翰林版 三年級上學期 自然科學</p>
+      <h1>磁鐵好好玩</h1>
+      <p class="sub">第 4 單元｜4 節課。從「磁鐵能吸什麼」開始，找到磁極、玩相斥相吸，最後走進生活中的磁鐵。</p>
+      <div class="chips">
+        <span class="chip"><b>10/26</b> 一</span>
+        <span class="chip"><b>10/29</b> 四</span>
+        <span class="chip"><b>11/2</b> 一</span>
+        <span class="chip"><b>11/5</b> 四</span>
+        <span class="chip">每節 <b>40</b> 分鐘</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn accent" href="#labs">先玩互動實驗</a>
+        <a class="btn ghost" href="#quiz">做 10 題測驗</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="media/img/m025.jpg" alt="長條形磁鐵">
+    </div>
+  </div>
+</header>
+
+<section id="map">
+  <div class="wrap">
+    <p class="eyebrow">課程地圖</p>
+    <h2>4 節課，一步一步認識磁鐵</h2>
+    <p class="lead">每一節都有一個「動手的任務」和一個「要記住的概念」。點標題可跳到該節的簡報頁。</p>
+    <div class="lessons" id="lessonList"></div>
+  </div>
+</section>
+
+<section id="labs">
+  <div class="wrap">
+    <p class="eyebrow">互動實驗室</p>
+    <h2>先猜，再驗證</h2>
+    <p class="lead">上台前先玩一次，隔天實體實驗會更有感覺。三個小活動都對應課堂上的實驗。</p>
+    <div class="labs">
+
+      <div class="lab card">
+        <span class="tag">實驗 ①</span>
+        <h3>吸引大挑戰</h3>
+        <p class="hint">這個東西會被磁鐵吸住嗎？連續判斷 20 個物品。</p>
+        <div class="stage">
+          <img id="gImg" alt="">
+          <div class="name" id="gName">—</div>
+        </div>
+        <div class="opts">
+          <button id="gYes">會被吸住</button>
+          <button id="gNo">不會被吸住</button>
+        </div>
+        <div class="fb" id="gFb"></div>
+        <div class="progress" id="gProg"></div>
+      </div>
+
+      <div class="lab card">
+        <span class="tag">實驗 ②</span>
+        <h3>磁力探測</h3>
+        <p class="hint">把磁鐵慢慢拉遠，看看還吸得起幾根迴紋針。</p>
+        <div class="stage">
+          <div style="font-size:15px;color:var(--ink2)">距離</div>
+          <div style="font-size:38px;font-weight:800;color:var(--accent)" id="distOut">1 公分</div>
+          <div style="font-size:44px;letter-spacing:4px" id="clipOut">📎📎📎📎📎</div>
+          <div class="name" id="clipText">吸起 5 根</div>
+        </div>
+        <input id="distRange" type="range" min="0" max="6" value="1" step="1" style="width:100%;margin-top:16px;accent-color:var(--accent)">
+        <div class="fb" id="distFb"></div>
+      </div>
+
+      <div class="lab card">
+        <span class="tag">實驗 ③</span>
+        <h3>磁極找一找</h3>
+        <p class="hint">點磁鐵上的位置，看哪裡吸力最強。</p>
+        <div class="stage">
+          <div style="display:flex;align-items:center;justify-content:center;gap:0;margin:6px 0">
+            <div class="pole" data-p="left" style="width:64px;height:64px;background:#C0392B;color:#fff;display:grid;place-items:center;border-radius:10px 0 0 10px;cursor:pointer;font-weight:800;font-size:20px">N</div>
+            <div class="pole" data-p="mid" style="width:110px;height:64px;background:#EDE6D6;display:grid;place-items:center;cursor:pointer;font-size:12px;color:#6B7B72">中間</div>
+            <div class="pole" data-p="right" style="width:64px;height:64px;background:#2C5F8A;color:#fff;display:grid;place-items:center;border-radius:0 10px 10px 0;cursor:pointer;font-weight:800;font-size:20px">S</div>
+          </div>
+          <div class="name">點點看：哪裡磁力最強？</div>
+        </div>
+        <div class="fb" id="poleFb"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="deck">
+  <div class="wrap">
+    <p class="eyebrow">教學簡報</p>
+    <h2>24 頁，一頁一個重點</h2>
+    <p class="lead">現場投影用簡報檔；這裡是同一份內容的網頁版，可翻頁、可用鍵盤左右鍵。</p>
+    <div class="deck">
+      <div class="frame"><img id="slideImg" src="slides/slide01.jpg" alt="簡報第 1 頁"></div>
+      <div class="bar">
+        <button class="btn ghost" id="prevSlide">← 上一頁</button>
+        <span class="count" id="slideCount">1 / 24</span>
+        <button class="btn" id="nextSlide">下一頁 →</button>
+      </div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="wrap">
+    <p class="eyebrow">課堂測驗</p>
+    <h2>10 題，檢查你懂了嗎</h2>
+    <p class="lead">每題選一個答案，選完會告訴你對錯和原因。做完看總分。</p>
+    <div class="quiz card qcard" id="quizBox"></div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="wrap">
+    <p class="eyebrow">參考影片</p>
+    <h2>看不懂的地方，看影片</h2>
+    <p class="lead">5 部國小三年級可看的磁鐵影片，點縮圖到 YouTube 播放。</p>
+    <div class="videos" id="videoList"></div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <p class="eyebrow">教學工具</p>
+    <h2>抽籤與計時器</h2>
+    <p class="lead">抽籤用座號 1～30，抽過不重複；計時器預設 3 分鐘。</p>
+    <div class="tools">
+      <div class="tool card">
+        <h3>抽籤（座號 1–30）</h3>
+        <div class="draw-num idle" id="drawOut">按下面開始</div>
+        <div class="row">
+          <button class="btn accent" id="drawBtn">抽一個</button>
+          <button class="btn ghost" id="drawReset">重設</button>
+        </div>
+        <div class="pool" id="drawPool">剩下 30 個號碼</div>
+      </div>
+      <div class="tool card">
+        <h3>計時器</h3>
+        <div class="timer" id="timerOut">03:00</div>
+        <div class="presets">
+          <button data-sec="60">1 分鐘</button>
+          <button data-sec="120">2 分鐘</button>
+          <button data-sec="180">3 分鐘</button>
+          <button data-sec="300">5 分鐘</button>
+        </div>
+        <div class="row">
+          <button class="btn accent" id="tStart">開始</button>
+          <button class="btn ghost" id="tReset">歸零</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="battle">
+  <div class="wrap">
+    <p class="eyebrow">兩人對戰</p>
+    <h2>磁鐵知識王：兩人搶答</h2>
+    <p class="lead">同一題目兩人同時看到，先答對得 1 分。10 題結束結算，可再戰。</p>
+    <div class="battle">
+      <iframe id="battleFrame" src="battle.html?embed=1" title="磁鐵知識王對戰" loading="lazy"></iframe>
+    </div>
+    <p class="note" id="battleNote">
+      載入中…若畫面一直空白，請確認網路連線，或改用教室區網版。
+    </p>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <p class="eyebrow">素材圖庫</p>
+    <h2>147 張上課圖，自由取用</h2>
+    <p class="lead">依課本三小節分成三組。點圖可放大，簡報與學習單都用這批圖。</p>
+    <div class="filters" id="filters">
+      <button class="on" data-g="all">全部 147</button>
+      <button data-g="01">4-1 磁鐵的磁力</button>
+      <button data-g="02">4-2 磁鐵的祕密</button>
+      <button data-g="03">4-3 生活應用</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section id="downloads">
+  <div class="wrap">
+    <p class="eyebrow">下載</p>
+    <h2>教案、簡報、學習單</h2>
+    <p class="lead">要列印、要修改都可以直接用。</p>
+    <div class="dl" id="dlList">
+      <a class="card" href="downloads/教案_磁鐵好好玩.docx" download>
+        <em>DOCX</em><b>教案（4 節）</b><span>含教學流程、評量、板書與省思欄</span>
+      </a>
+      <a class="card" href="downloads/磁鐵好好玩_教學簡報.pptx" download>
+        <em>PPTX</em><b>教學簡報</b><span>24 頁，16:9，可直接投影</span>
+      </a>
+      <a class="card" href="downloads/學習單1_磁鐵能吸引什麼.pdf" download>
+        <em>PDF</em><b>學習單①</b><span>分類記錄：會吸／不會吸</span>
+      </a>
+      <a class="card" href="downloads/學習單2_磁極與相斥相吸.pdf" download>
+        <em>PDF</em><b>學習單②</b><span>磁極標示、相斥相吸記錄</span>
+      </a>
+      <a class="card" href="downloads/測驗卷_磁鐵好好玩.pdf" download>
+        <em>PDF</em><b>測驗卷</b><span>10 題，附答案與解析</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>磁鐵好好玩｜翰林版三年級上學期自然科學 第 4 單元｜教材圖庫 147 張｜115 學年度</p>
+    <p>課程：10/26、10/29、11/2、11/5　｜　<a href="#map">回課程地圖</a>　｜　<a href="battle.html">對戰頁（單獨開）</a></p>
+  </div>
+</footer>
+
+<div class="lb" id="lightbox"><span class="close">&times;</span><img id="lbImg" alt=""><p id="lbCap"></p></div>
+<div class="toast" id="toast"></div>
+
+<script src="media/images.js"></script>
+<script>
+
+/* ═══════════ 資料 ═══════════ */
+const LESSONS = [
+  { n:1, date:'10/26（一）', title:'磁鐵能吸引什麼？', sec:'4-1',
+    goal:'能預測並實測哪些物品會被磁鐵吸引，歸納出「磁鐵吸引鐵製品」。',
+    acts:['預測單','分組實測 12 樣','分類海報','破解硬幣迷思'],
+    imgs:['002','004','008','009','012','013','017','020'], slide:5 },
+  { n:2, date:'10/29（四）', title:'磁力有多大？磁極在哪裡？', sec:'4-1・4-2',
+    goal:'知道磁極附近最強、越遠越弱、隔著物品也能吸；找出磁鐵的 N 極與 S 極。',
+    acts:['迴紋針距離賽','鐵粉看磁力','隔紙吸引','標 N／S'],
+    imgs:['025','026','027','088','050','095','107'], slide:12 },
+  { n:3, date:'11/2（一）', title:'同極相斥、異極相吸', sec:'4-2',
+    goal:'能說出同極相斥、異極相吸，並做出會自由轉動指向南北的磁鐵。',
+    acts:['兩磁鐵相靠','相斥小車','水浮指南針','斷裂磁鐵'],
+    imgs:['091','092','093','098','105'], slide:19 },
+  { n:4, date:'11/5（四）', title:'生活中的磁鐵＆知識王', sec:'4-3',
+    goal:'能舉出生活應用並分辨有無磁鐵，完成 10 題測驗與兩人對戰。',
+    acts:['校園尋寶','玩具分類','靜電迷思','測驗＋對戰'],
+    imgs:['108','109','136','119','123','135','122','147'], slide:22 }
+];
+
+const SLIDES = [
+  {img:'slides/slide01.jpg'},{img:'slides/slide02.jpg'},{img:'slides/slide03.jpg'},
+  {img:'slides/slide04.jpg'},{img:'slides/slide05.jpg'},{img:'slides/slide06.jpg'},
+  {img:'slides/slide07.jpg'},{img:'slides/slide08.jpg'},{img:'slides/slide09.jpg'},
+  {img:'slides/slide10.jpg'},{img:'slides/slide11.jpg'},{img:'slides/slide12.jpg'},
+  {img:'slides/slide13.jpg'},{img:'slides/slide14.jpg'},{img:'slides/slide15.jpg'},
+  {img:'slides/slide16.jpg'},{img:'slides/slide17.jpg'},{img:'slides/slide18.jpg'},
+  {img:'slides/slide19.jpg'},{img:'slides/slide20.jpg'},{img:'slides/slide21.jpg'},
+  {img:'slides/slide22.jpg'},{img:'slides/slide23.jpg'},{img:'slides/slide24.jpg'}
+];
+
+const QUIZ = [
+  { q:'用磁鐵靠近下列哪一種物品，會被吸住？',
+    o:['橡皮擦','鐵釘','塑膠尺','紙張'], a:1,
+    e:'鐵釘是鐵做的，磁鐵會吸引鐵製品。橡皮擦、塑膠尺、紙張都不是鐵。',
+    img:'media/img/m008.jpg' },
+  { q:'下列哪一種物品「不會」被磁鐵吸引？',
+    o:['迴紋針','鐵湯匙','硬幣','鐵尺'], a:2,
+    e:'臺灣的硬幣主要是銅、鎳、鋅做的，不是鐵，所以磁鐵吸不住。看起來像金屬，不代表會被吸。',
+    img:'media/img/m009.jpg' },
+  { q:'磁鐵的哪一個部位磁力最強？',
+    o:['正中央','兩端','整塊都一樣強','背面'], a:1,
+    e:'磁力集中在兩端，這兩端叫做磁極。中間的磁力最弱，幾乎吸不住迴紋針。',
+    img:'media/img/m095.jpg' },
+  { q:'把磁鐵慢慢遠離迴紋針，會發生什麼事？',
+    o:['吸力變強','吸力不變','吸力變弱，最後吸不到','迴紋針會被推開'], a:2,
+    e:'距離越遠，磁力越弱。磁鐵貼著時可以吸起好幾根，拉遠之後一根都吸不住。',
+    img:'media/img/m107.jpg' },
+  { q:'長條形磁鐵的 N 極和 S 極分別在哪裡？',
+    o:['都在中間','都在同一端','分別在兩端','只有一端有磁極'], a:2,
+    e:'每一塊磁鐵都有兩個磁極，分別在兩端。N 極和 S 極一定同時存在。',
+    img:'media/img/m066.jpg' },
+  { q:'把兩個磁鐵的 N 極靠近 N 極，會怎樣？',
+    o:['互相吸引','互相排斥','沒有任何反應','合成一個磁鐵'], a:1,
+    e:'同極相斥。相同的磁極靠近會互相推開；不同的磁極（N 對 S）才會相吸。',
+    img:'media/img/m091.jpg' },
+  { q:'把磁鐵吊起來讓它自由轉動，停下來後 N 極會指向哪裡？',
+    o:['東方','南方','北方','正上方'], a:2,
+    e:'自由轉動的磁鐵停止後，N 極指向北方、S 極指向南方，指南針就是利用這個原理。' },
+  { q:'把一塊長條磁鐵折成兩段，每一段會怎樣？',
+    o:['只有一端有磁極','變成不再有磁性','兩段各有 N 極和 S 極','兩段會互相排斥到很遠'], a:2,
+    e:'磁鐵斷成幾段，每一段都還是完整的磁鐵，都有自己的 N 極和 S 極。' },
+  { q:'下列哪一個生活用品「沒有」用到磁鐵？',
+    o:['冰箱門的磁條','鉛筆盒的蓋子','風車','黑板上的磁鐵'], a:2,
+    e:'風車靠風轉動，和磁鐵無關。冰箱磁條、鉛筆盒磁扣、黑板磁鐵都是利用磁力。',
+    img:'media/img/m122.jpg' },
+  { q:'用膠帶黏起頭髮，和磁鐵吸引鐵釘，原理一樣嗎？',
+    o:['一樣，都是磁力','不一樣，膠帶靠靜電','一樣，都是靜電','不一樣，磁鐵是靜電'], a:1,
+    e:'膠帶黏頭髮是靜電現象，不是磁力。磁鐵只吸引鐵製品，不會吸引頭髮或紙屑。',
+    img:'media/img/m139.jpg' }
+];
+
+const VIDEOS = [
+  { t:'《新科學探險隊》磁鐵的磁力強弱｜LIS 情境科學教材', u:'https://www.youtube.com/watch?v=yTaWEgU_wm0', id:'yTaWEgU_wm0', s:'LIS-science fun' },
+  { t:'108新課綱｜小三自然｜磁鐵的兩極及磁力大小', u:'https://www.youtube.com/watch?v=_vpZXNY20PI', id:'_vpZXNY20PI', s:'國小自然' },
+  { t:'2-1 磁鐵與磁性｜均一教育平台', u:'https://www.youtube.com/watch?v=CH_mmg-FN6I', id:'CH_mmg-FN6I', s:'均一教育平台' },
+  { t:'看見自然 EP5：磁鐵的生活應用', u:'https://www.youtube.com/watch?v=uSjNRToSThA', id:'uSjNRToSThA', s:'均一教育平台' },
+  { t:'【動手玩科學】磁力怪獸｜認識磁力', u:'https://www.youtube.com/watch?v=icPBJ6Nr9Gs', id:'icPBJ6Nr9Gs', s:'小行星樂樂TV' }
+];
+
+/* ═══════════ 小工具 ═══════════ */
+const $ = (s) => document.querySelector(s);
+const shuffle = (a) => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+let toastTimer;
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 1800); }
+const imgByCode = (code) => (typeof IMAGES !== 'undefined' ? IMAGES.find(x => x.code === code) : null);
+
+/* ═══════════ 課程地圖 ═══════════ */
+(function renderLessons(){
+  const box = $('#lessonList');
+  box.innerHTML = LESSONS.map(L => `
+    <article class="lesson card">
+      <div class="no">${L.n}<small>第 ${L.n} 節</small></div>
+      <div>
+        <h3>${L.title}<span style="font-size:13px;color:var(--ink3);font-weight:400;margin-left:10px">${L.sec}｜${L.date}</span></h3>
+        <p class="goal">${L.goal}</p>
+        <ul class="acts">${L.acts.map(a => `<li>${a}</li>`).join('')}</ul>
+        <div class="imgs">${L.imgs.map(c => { const im = imgByCode(c); return im ? `<img src="${im.h}" alt="${im.name}" title="${im.name}">` : ''; }).join('')}</div>
+        <p style="margin:12px 0 0"><a href="#deck" data-slide="${L.slide}" class="jump">看這節的簡報 →</a></p>
+      </div>
+    </article>`).join('');
+  box.querySelectorAll('.jump').forEach(a => a.addEventListener('click', () => {
+    goSlide(parseInt(a.dataset.slide, 10) - 1);
+  }));
+})();
+
+/* ═══════════ 實驗①：吸引大挑戰 ═══════════ */
+const ATTRACT = [
+  { c:'004', name:'長尾夾', yes:true,  why:'長尾夾是鐵做的，會被磁鐵吸住。' },
+  { c:'008', name:'鐵釘',   yes:true,  why:'鐵釘是鐵做的，會被吸住。' },
+  { c:'011', name:'釘書針', yes:true,  why:'釘書針是鐵做的，會被吸住。' },
+  { c:'012', name:'迴紋針', yes:true,  why:'迴紋針是鐵做的，會被吸住。' },
+  { c:'017', name:'鐵湯匙', yes:true,  why:'鐵湯匙是鐵做的，會被吸住。' },
+  { c:'060', name:'鐵盒',   yes:true,  why:'鐵盒是鐵做的，會被吸住。' },
+  { c:'079', name:'鐵鍋',   yes:true,  why:'鐵鍋是鐵做的，會被吸住。' },
+  { c:'005', name:'鐵尺',   yes:true,  why:'鐵尺是鐵做的，會被吸住。' },
+  { c:'036', name:'鐵罐',   yes:true,  why:'鐵罐是鐵做的，會被吸住。' },
+  { c:'086', name:'圖釘',   yes:true,  why:'圖釘是鐵做的，會被吸住。' },
+  { c:'002', name:'橡皮擦', yes:false, why:'橡皮擦是橡膠做的，磁鐵吸不住。' },
+  { c:'003', name:'膠水',   yes:false, why:'膠水是塑膠瓶，磁鐵吸不住。' },
+  { c:'006', name:'便利貼', yes:false, why:'便利貼是紙做的，磁鐵吸不住。' },
+  { c:'009', name:'硬幣',   yes:false, why:'硬幣是銅、鎳、鋅做的，不是鐵，所以吸不住。' },
+  { c:'013', name:'塑膠尺', yes:false, why:'塑膠尺是塑膠做的，磁鐵吸不住。' },
+  { c:'015', name:'牙籤',   yes:false, why:'牙籤是木頭做的，磁鐵吸不住。' },
+  { c:'018', name:'寶特瓶', yes:false, why:'寶特瓶是塑膠做的，磁鐵吸不住。' },
+  { c:'019', name:'墊板',   yes:false, why:'墊板是塑膠做的，磁鐵吸不住。' },
+  { c:'020', name:'紙張',   yes:false, why:'紙不是鐵，磁鐵吸不住。' },
+  { c:'074', name:'玻璃杯', yes:false, why:'玻璃不是鐵，磁鐵吸不住。' }
+];
+
+(function gameAttract(){
+  let deck = shuffle(ATTRACT), i = 0, score = 0, locked = false;
+  const gImg = $('#gImg'), gName = $('#gName'), gFb = $('#gFb'), gProg = $('#gProg');
+  const yesBtn = $('#gYes'), noBtn = $('#gNo');
+
+  function show(){
+    if (i >= deck.length){ finish(); return; }
+    const it = deck[i];
+    gImg.src = 'media/img/m' + it.c + '.jpg';
+    gImg.alt = it.name;
+    gName.textContent = it.name;
+    gFb.textContent = '';
+    gFb.className = 'fb';
+    gProg.textContent = `第 ${i + 1} / ${deck.length} 題　已答對 ${score} 題`;
+    yesBtn.disabled = noBtn.disabled = false;
+    locked = false;
+  }
+  function answer(choice){
+    if (locked) return; locked = true;
+    const it = deck[i];
+    const right = choice === it.yes;
+    if (right) score++;
+    gFb.textContent = (right ? '✓ 答對了！' : '✗ 再想想。') + it.why;
+    gFb.className = 'fb ' + (right ? 'ok' : 'bad');
+    gProg.textContent = `第 ${i + 1} / ${deck.length} 題　已答對 ${score} 題`;
+    yesBtn.disabled = noBtn.disabled = true;
+    setTimeout(() => { i++; show(); }, 1500);
+  }
+  function finish(){
+    gImg.src = 'media/img/m012.jpg';
+    gName.textContent = `全部完成！答對 ${score} / ${deck.length}`;
+    gFb.textContent = score === deck.length ? '太厲害了，你已經抓到「鐵製品」的規律。' : '再玩一次，注意「摸起來像金屬」不等於「鐵」。';
+    gFb.className = 'fb ' + (score >= deck.length * 0.8 ? 'ok' : 'bad');
+    gProg.innerHTML = '<a href="#" id="againBtn">再玩一次 →</a>';
+    document.getElementById('againBtn').addEventListener('click', (e) => {
+      e.preventDefault(); deck = shuffle(ATTRACT); i = 0; score = 0; show();
+    });
+  }
+  yesBtn.addEventListener('click', () => answer(true));
+  noBtn.addEventListener('click', () => answer(false));
+  show();
+})();
+
+/* ═══════════ 實驗②：磁力探測 ═══════════ */
+(function dist(){
+  const r = $('#distRange');
+  const update = () => {
+    const d = parseInt(r.value, 10);
+    const n = Math.max(0, 5 - Math.floor(d * 0.85) );
+    $('#distOut').textContent = d + ' 公分';
+    $('#clipOut').textContent = n ? '📎'.repeat(n) : '（吸不到）';
+    $('#clipText').textContent = n ? `吸起 ${n} 根` : '完全吸不住';
+    $('#distFb').textContent = d === 0 ? '貼著鐵片：磁力最強。' : (n === 0 ? '太遠了，磁力傳不到。' : '距離越遠，能吸住的越少。');
+  };
+  r.addEventListener('input', update); update();
+})();
+
+/* ═══════════ 實驗③：磁極找一找 ═══════════ */
+(function poles(){
+  const fb = $('#poleFb');
+  document.querySelectorAll('.pole').forEach(p => {
+    p.addEventListener('click', () => {
+      const where = p.dataset.p;
+      if (where === 'mid'){
+        fb.textContent = '✗ 中間最弱，常常連一根迴紋針都吸不住。';
+        fb.className = 'fb bad';
+      } else {
+        fb.textContent = '✓ 答對了，兩端（磁極）磁力最強，鐵粉也會集中在這裡。';
+        fb.className = 'fb ok';
+      }
+    });
+  });
+})();
+
+/* ═══════════ 簡報播放器 ═══════════ */
+let slideIdx = 0;
+function goSlide(n){
+  slideIdx = Math.max(0, Math.min(SLIDES.length - 1, n));
+  $('#slideImg').src = SLIDES[slideIdx].img;
+  $('#slideImg').alt = '簡報第 ' + (slideIdx + 1) + ' 頁';
+  $('#slideCount').textContent = (slideIdx + 1) + ' / ' + SLIDES.length;
+  document.querySelectorAll('#thumbs img').forEach((im, i) => im.classList.toggle('on', i === slideIdx));
+}
+(function deck(){
+  $('#thumbs').innerHTML = SLIDES.map((s, i) => `<img src="${s.img}" data-i="${i}" alt="第 ${i + 1} 頁" loading="lazy">`).join('');
+  $('#thumbs').addEventListener('click', (e) => {
+    const t = e.target.closest('img'); if (t) goSlide(parseInt(t.dataset.i, 10));
+  });
+  $('#prevSlide').addEventListener('click', () => goSlide(slideIdx - 1));
+  $('#nextSlide').addEventListener('click', () => goSlide(slideIdx + 1));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') goSlide(slideIdx + 1);
+    if (e.key === 'ArrowLeft') goSlide(slideIdx - 1);
+  });
+  goSlide(0);
+})();
+
+/* ═══════════ 測驗 ═══════════ */
+(function quiz(){
+  const box = $('#quizBox');
+  let i = 0, score = 0, log = [];
+
+  function start(){
+    i = 0; score = 0; log = []; render();
+  }
+  function render(){
+    if (i >= QUIZ.length) return result();
+    const q = QUIZ[i];
+    box.innerHTML = `
+      ${q.img ? `<img class="qimg" src="${q.img}" alt="題目附圖">` : ''}
+      <p class="qtext">${i + 1}. ${q.q}</p>
+      <div class="qopts">${q.o.map((o, k) =>
+        `<button class="qopt" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span>${o}</span></button>`).join('')}</div>
+      <div class="qfb" id="qfb"></div>
+      <div class="qbar"><span>第 ${i + 1} / ${QUIZ.length} 題</span><span>答對 ${score} 題</span></div>`;
+    box.querySelectorAll('.qopt').forEach(b => b.addEventListener('click', () => pick(parseInt(b.dataset.k, 10))));
+  }
+  function pick(k){
+    const q = QUIZ[i];
+    box.querySelectorAll('.qopt').forEach((b, idx) => {
+      b.disabled = true;
+      if (idx === q.a) b.classList.add('ok');
+      if (idx === k && k !== q.a) b.classList.add('bad');
+    });
+    const right = k === q.a;
+    if (right) score++;
+    log.push({ right });
+    const fb = $('#qfb');
+    fb.className = 'qfb show';
+    fb.innerHTML = (right ? '<b>✓ 答對了</b>' : `<b>✗ 答案是 ${'ABCD'[q.a]}</b>`) + '<br>' + q.e +
+      `<div style="margin-top:12px"><button class="btn" id="qnext">${i + 1 === QUIZ.length ? '看結果' : '下一題 →'}</button></div>`;
+    $('#qnext').addEventListener('click', () => { i++; render(); });
+  }
+  function result(){
+    const pct = Math.round(score / QUIZ.length * 100);
+    const msg = pct === 100 ? '完美！你已經是磁鐵小達人。'
+      : pct >= 80 ? '很厲害，再複習錯的那一題就好。'
+      : pct >= 60 ? '不錯，把「磁極」和「鐵製品」再看一次。'
+      : '別急，回到互動實驗室再玩一輪。';
+    box.innerHTML = `<div class="result">
+      <div class="score">${score}<small> / ${QUIZ.length}</small></div>
+      <p style="font-size:19px;margin:18px 0 6px">${msg}</p>
+      <p style="color:var(--ink2)">答對率 ${pct}%</p>
+      <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="btn accent" id="qagain">再測一次</button>
+        <a class="btn ghost" href="#battle">去兩人對戰</a>
+      </div></div>`;
+    $('#qagain').addEventListener('click', start);
+  }
+  start();
+})();
+
+/* ═══════════ 影片 ═══════════ */
+(function videos(){
+  $('#videoList').innerHTML = VIDEOS.map(v => `
+    <a class="video card" href="${v.u}" target="_blank" rel="noopener">
+      <div class="thumb">
+        <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="${v.t}" loading="lazy">
+        <div class="play"><span>▶</span></div>
+      </div>
+      <div class="meta"><b>${v.t}</b><span>${v.s} ・ YouTube</span></div>
+    </a>`).join('');
+})();
+
+/* ═══════════ 抽籤 ═══════════ */
+(function draw(){
+  const TOTAL = 30;
+  let pool = [];
+  const out = $('#drawOut'), poolTxt = $('#drawPool');
+  const reset = () => { pool = Array.from({ length: TOTAL }, (_, i) => i + 1); poolTxt.textContent = `剩下 ${pool.length} 個號碼`; };
+  reset();
+  $('#drawBtn').addEventListener('click', () => {
+    if (!pool.length){ toast('30 個號碼都抽完了，按「重設」再來'); return; }
+    const k = Math.floor(Math.random() * pool.length);
+    const n = pool.splice(k, 1)[0];
+    out.textContent = n;
+    out.classList.remove('idle');
+    poolTxt.textContent = `剩下 ${pool.length} 個號碼：` + (pool.length ? pool.join('、') : '（已抽完）');
+  });
+  $('#drawReset').addEventListener('click', () => { reset(); out.textContent = '按下面開始'; out.classList.add('idle'); });
+})();
+
+/* ═══════════ 計時器 ═══════════ */
+(function timer(){
+  let total = 180, left = 180, tick = null;
+  const out = $('#timerOut'), startBtn = $('#tStart');
+  const fmt = (s) => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+  const paint = () => { out.textContent = fmt(left); out.classList.toggle('warn', left <= 10); };
+  function stop(){ clearInterval(tick); tick = null; startBtn.textContent = '開始'; }
+  startBtn.addEventListener('click', () => {
+    if (tick){ stop(); return; }
+    if (left === 0) left = total;
+    startBtn.textContent = '暫停';
+    tick = setInterval(() => {
+      left--; paint();
+      if (left <= 0){ stop(); toast('時間到！'); }
+    }, 1000);
+  });
+  $('#tReset').addEventListener('click', () => { stop(); left = total; paint(); });
+  document.querySelectorAll('.presets button').forEach(b => b.addEventListener('click', () => {
+    stop(); total = parseInt(b.dataset.sec, 10); left = total; paint();
+  }));
+  paint();
+})();
+
+/* ═══════════ 圖庫 ═══════════ */
+(function gallery(){
+  const grid = $('#grid');
+  const render = (g) => {
+    const list = (typeof IMAGES === 'undefined' ? [] : IMAGES).filter(im => g === 'all' || im.g === g);
+    grid.innerHTML = list.map(im => `
+      <figure data-full="${im.f}" data-name="${im.name}">
+        <img src="${im.h}" alt="${im.name}" loading="lazy">
+        <figcaption>${im.name}</figcaption>
+      </figure>`).join('');
+    $('#filters').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.g === g));
+  };
+  $('#filters').addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (b) render(b.dataset.g);
+  });
+  grid.addEventListener('click', (e) => {
+    const f = e.target.closest('figure'); if (!f) return;
+    $('#lbImg').src = f.dataset.full;
+    $('#lbCap').textContent = f.dataset.name;
+    $('#lightbox').classList.add('on');
+  });
+  $('#lightbox').addEventListener('click', () => $('#lightbox').classList.remove('on'));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('#lightbox').classList.remove('on'); });
+  render('all');
+})();
+
+/* ═══════════ 對戰說明 ═══════════ */
+(function battleNote(){
+  const api = (window.BATTLE_API || '').trim();
+  const note = $('#battleNote');
+  if (api){
+    note.innerHTML = `線上版：兩個學生各自開這個網頁，捲到這一區，輸入名字就會自動配對。<br>
+      老師也可以直接開 <a href="battle.html">對戰頁</a>。第一次連線若停在「正在連線」，是後端剛睡醒，等 30～60 秒。`;
+  } else {
+    note.innerHTML = `目前是「教室區網」模式：請老師先雙擊 <code>start-battle.bat</code>，
+      學生再開 <code>http://老師電腦IP:8765/battle.html</code>。`;
+  }
+})();
+</script>
+</body>
+</html>
