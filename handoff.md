@@ -3,64 +3,69 @@
 > 任何 Agent、任何電腦接手前**必讀**；收工時**必更新**。本檔只放交接必需的精簡資訊，詳細脈絡放 Obsidian（L3）。
 
 ## ⏯️ 目前做到哪
-**階段 1 完成、階段 4 第一版完成。** 教學範圍已定為三年級上學期 第二單元「磁鐵的性質與運用」，
-並已完成 **15 頁教學簡報**（奇幻森林風格），檔案放在 `簡報/磁鐵的性質與運用_教學簡報.pptx`。
+**教學網站已上線（第一版完成）。** 翰林三上 **第 2 單元「磁鐵好好玩」4 節課**版本全部產出，
+GitHub Pages 部署成功：<https://rayilin.github.io/magnets-fun/>
 
 ## 🚦 目前狀態
-- 資料夾：`C:\Users\rayi\Documents\自然科學教學專欄\磁鐵好好玩\`（獨立 git repo）
-- 簡報：15 頁、16:9（33.87×19.05 cm）、10.3 MB、文字皆可編輯
-- 圖檔：`簡報/圖檔/slide01.jpg`～`slide15.jpg`，1600×900（PowerPoint 直接匯出，字型正確）
-- 驗證：`officecli validate` 無錯誤；PowerPoint 實際開啟 15 頁、960×540，**無修復提示**
-- 字型：`源石黑體月 H`（標題）／`源石黑體月 M`（內文）；別台電腦會退回系統字型
-- 課綱：INe-II-7（磁極／同斥異吸／磁力強弱）、INa-II-3（物質特性與分類）、INc-II-1（工具量測與比較）
-- 尚未有：教案、動畫、教學網頁、圖檔匯出
+| 項目 | 狀態 |
+|------|------|
+| 教案 docx（8 頁、13 節） | ✅ `教案/教案_磁鐵好好玩.docx`（＋PDF） |
+| 學習單 2 份 | ✅ 學習單①（2 頁）②（1 頁），docx＋PDF |
+| 測驗卷（10 題＋答案解析） | ✅ docx＋PDF |
+| 簡報 24 頁 16:9 | ✅ `簡報/磁鐵好好玩_教學簡報.pptx` |
+| 簡報圖檔 1600×900 ×24 | ✅ `教學網頁/slides/slide01–24.jpg`（PowerPoint COM 匯出） |
+| 教學網頁（11 區） | ✅ `教學網頁/index.html`，0 console error |
+| 對戰（battle.html／server.js／30 題） | ✅ 區網模式可用；雲端後端**尚未部署** |
+| 素材圖庫 147 張 | ✅ `media/img`＋`media/thumb`＋`images.js` |
+| 旁白動畫 4 段 MP4 | ❌ **未做**（規劃排在第二批） |
+| GitHub Pages | ✅ 公開 repo、workflow 部署成功 |
+| Render 對戰後端 | ⏸ 檔案已備（`render.yaml`＋`battle-server.js`），等老師登入 Render 按 Blueprint |
 
-## 📑 簡報 15 頁大綱
-1. 封面　2. 單元導覽（五道鎖＋學習目標）　3. 生活中的磁鐵　4. 能吸／不能吸（破除「所有金屬」迷思）
-5. 磁力大小怎麼比才公平　6. 磁極（兩端最強、中間最弱＋條形磁鐵圖解）　7. 鐵粉看見磁力線
-8. 同極相斥、異極相吸　9. 磁鐵會指方向（指南針）　10. 磁力能穿過嗎
-11. 磁化（鐵釘摩擦／接觸）　12. 磁鐵變弱與保養　13. 生活應用　14. 科技應用　15. 總結＋自製指南針
+## 🔗 網址
+- 首頁：<https://rayilin.github.io/magnets-fun/>
+- 對戰：<https://rayilin.github.io/magnets-fun/battle.html>
+- 答案檔：`.../questions.json` → **404（正確，已被 Pages 排除）**
+- repo：<https://github.com/rayilin/magnets-fun>（PUBLIC）
 
-## ➡️ 下一步
-1. 確認版本（翰林／康軒／南一）與授課節數、日期
-2. 從 `teaching-site` 技能「階段 2」接續：概念清單、迷思、參考影片、實驗器材
-3. 產出教案 docx（`教案/`），簡報可再依版本頁序微調
-4. 教學網頁時把 `簡報/圖檔/*.jpg` 複製到 `教學網頁/slides/`（播放器用，命名 slide01.jpg～slide15.jpg）
-5. 之後才是旁白動畫 4 段 → 教學網頁 → 對戰 → 上線
+## 📌 重要修正紀錄
+- **單元編號**：先前文件寫「第 4 單元」是錯的。翰林三上「磁鐵好好玩」是**第 2 單元**
+  （翰林官方頻道影片標題 CH2、素材庫前綴 02 皆可佐證）。教案／簡報／學習單／網頁已全部改為 2-1／2-2／2-3。
+- **中文 PDF 絕對不要用 LibreOffice 轉**：會有字型子集損壞（整頁變成重複的「磁鐵」二字，甚至圖片上疊字）。
+  本機 11:30 左右就踩過一次。正確做法：
+  - pptx → JPG：PowerPoint COM `Presentations.Open(...).Export(dir,"JPG",1600,900)`
+  - docx → PDF：Word COM `Document.SaveAs([ref]$path,[ref]17)`
+- **測驗題數**：網頁內建測驗是 **10 題**（`check_site.js` 的標準；超過會被判失敗），
+  對戰題庫另備 **30 題**（含解析）。規劃表原寫「測驗 30 題」→ 已調整為 10＋30。
 
-## 🖼️ 重新匯出圖檔
-在專案根目錄執行（務必用 PowerPoint 匯出，字型才會正確；officecli 截圖會退回系統字型）：
+## ➡️ 下一步（依優先順序）
+1. **對戰後端**：Render → New + → Blueprint → 選 `rayilin/magnets-fun` → Apply。
+   拿到網址後改 `教學網頁/battle-api.js` 的 `window.BATTLE_API = 'https://xxx.onrender.com';` 再 push。
+2. **旁白動畫 4 段**（吸引什麼／磁極／相斥相吸／生活應用，各 12–15 秒）：
+   用 `hyperframes` 技能，輸出放 `教學網頁/media/video/`，並在 `index.html` 加一段播放區塊
+   （目前 `SLIDES/QUIZ/VIDEOS` 都沒有 mp4，`check_site.js` 不會要求）。
+3. 上課前實機驗收：單槍投影（簡報 24 頁）、平板開網頁（測驗／圖庫載入）、
+   對戰兩人配對（區網版 `start-battle.bat`）。
+
+## 🧰 重建指令（詳見 AGENTS.md）
 ```powershell
-$f = "簡報\磁鐵的性質與運用_教學簡報.pptx"
-$o = "簡報\圖檔"
-New-Item -ItemType Directory -Force $o | Out-Null
-$ppt = New-Object -ComObject PowerPoint.Application
-$pres = $ppt.Presentations.Open((Resolve-Path $f), $true, $false, $false)
-for ($i = 1; $i -le $pres.Slides.Count; $i++) {
-  $name = "slide{0:D2}.jpg" -f $i
-  $pres.Slides.Item($i).Export((Join-Path (Resolve-Path $o) $name), "JPG", 1600, 900)
-}
-$pres.Close(); $ppt.Quit()
+python 工具\build_deck.py      # 24 頁簡報
+python 工具\build_plan.py      # 教案
+python 工具\build_sheets.py    # 學習單＋測驗卷
+python 工具\build_questions.py # 30 題題庫
+python 工具\build_images.py    # 147 張圖 → media/
 ```
-
-## 🔧 重建簡報
-```powershell
-cd 簡報\src
-python gen_bg2.py     # 只有 bg\ 不存在時才需要
-python build.py
-```
-- `build.py` 依賴 officecli（`C:\Users\rayi\AppData\Local\OfficeCli\officecli.exe`）
-- 背景底圖 `簡報/src/bg/` 已列入 `.gitignore`（18 MB，可由 `gen_bg2.py` 從 `素材/風格參考圖.png` 重生成）
-- officecli 對開著的檔案有鎖；重建前先關閉 PowerPoint，否則會失敗
 
 ## ⚠️ 注意事項
 - 本資料夾是**獨立的 git repo**，位在上層 repo `natural-science-teaching-column` 裡面；
-  上層已把 `磁鐵好好玩/` 加入 `.gitignore`，不要在裡面 `git add` 上層的東西
-- repo 為**私有**（`rayilin/magnets-fun`）；若之後要上 GitHub Pages，需先決定是否轉公開
+  上層已把 `磁鐵好好玩/` 加入 `.gitignore`
+- `簡報/` 裡另有一份**舊版 15 頁**（`磁鐵的性質與運用_教學簡報.pptx`，奇幻森林風）＋`簡報/src/`，
+  與本版無關，**不要刪**；`簡報/src/bg/`、`簡報/src/ops.json` 已列入 `.gitignore`
+- 影片 5 部已用 YouTube oembed 驗證（yTaWEgU_wm0／_vpZXNY20PI／CH_mmg-FN6I／uSjNRToSThA／icPBJ6Nr9Gs）
 - 一律繁體中文；學生資料只用座號
-- 簡報內容為自行編寫＋課綱查證，**未逐字對照教科書頁面**，定稿前建議對一次版本內容
+- 簡報內容為自行編寫＋課綱查證（INe-Ⅱ-7），**未逐字對照教科書頁面**，定稿前建議對一次
 
 ## 🕐 最後更新
-- 時間：2026-10-23 11:38
+- 時間：2026-10-23 12:35
 - 更新者：OpenCode（DeepSeek V4.1 Flash Free） @ DESKTOP-4475O68
-- Git push：✅ 已推（commit e45779b，`main`）
+- Git：✅ 已推（`main`，commit `308356e` 之後）
+- Pages：✅ 部署成功（run 39898832971 success）
