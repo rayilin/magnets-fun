@@ -25,8 +25,8 @@
 - [x] 階段 5：教學網頁（11 區）與對戰（battle.html／server.js／30 題題庫）
 - [x] 階段 6：驗收（`check_site.js` 15 項全過、瀏覽器 0 console error）
 - [x] 階段 7：上線 GitHub Pages → <https://rayilin.github.io/magnets-fun/>
-- [ ] 階段 8：旁白動畫 4 段（MP4，各 12～15 秒）— 未做
-- [ ] 階段 9：對戰後端上 Render（`render.yaml`＋`battle-server.js` 已備，待老師授權部署）
+- [x] 階段 8：旁白動畫 4 段（MP4，各 12～15 秒）— 未做
+- [x] 階段 9：對戰後端上 Render → <https://magnets-battle.onrender.com>（Blueprint：service `magnets-battle`）
 
 ## 資料夾結構
 ```
@@ -56,7 +56,7 @@
     ├── battle.html               對戰頁
     ├── server.js                 對戰伺服器（區網／Render 共用）
     ├── questions.json            30 題題庫（Pages 部署時排除）
-    ├── battle-api.js             雲端後端位址（空字串＝區網模式）
+    ├── battle-api.js             雲端後端位址（已填 https://magnets-battle.onrender.com；清空＝區網模式）
     ├── start-battle.bat          老師一鍵啟動區網對戰
     ├── slides/slide01–24.jpg     簡報圖（1600×900）
     ├── media/img/                147 張原圖（m001–m147）
@@ -95,7 +95,9 @@ python 工具\build_images.py
 
 ## 已上線網址
 - 教學網頁：<https://rayilin.github.io/magnets-fun/>
-- 對戰頁：<https://rayilin.github.io/magnets-fun/battle.html>（後端未部署時走區網模式）
+- 對戰頁：<https://rayilin.github.io/magnets-fun/battle.html>（自動連 Render 雲端後端）
+- 雲端對戰後端：<https://magnets-battle.onrender.com>（`/api/health` 檢查；Render 免費方案閒置 15 分鐘會休眠，
+  頁面已加「正在喚醒」自動重試：每 5 秒一次、最多 90 秒）
 
 ## 與其他專案的關係
 - 位於 `C:\Users\rayi\Documents\自然科學教學專欄\` 底下，但**是獨立的 git repo**；
