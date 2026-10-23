@@ -9,6 +9,7 @@
 ## 🚦 目前狀態
 - 資料夾：`C:\Users\rayi\Documents\自然科學教學專欄\磁鐵好好玩\`（獨立 git repo）
 - 簡報：15 頁、16:9（33.87×19.05 cm）、10.3 MB、文字皆可編輯
+- 圖檔：`簡報/圖檔/slide01.jpg`～`slide15.jpg`，1600×900（PowerPoint 直接匯出，字型正確）
 - 驗證：`officecli validate` 無錯誤；PowerPoint 實際開啟 15 頁、960×540，**無修復提示**
 - 字型：`源石黑體月 H`（標題）／`源石黑體月 M`（內文）；別台電腦會退回系統字型
 - 課綱：INe-II-7（磁極／同斥異吸／磁力強弱）、INa-II-3（物質特性與分類）、INc-II-1（工具量測與比較）
@@ -24,8 +25,23 @@
 1. 確認版本（翰林／康軒／南一）與授課節數、日期
 2. 從 `teaching-site` 技能「階段 2」接續：概念清單、迷思、參考影片、實驗器材
 3. 產出教案 docx（`教案/`），簡報可再依版本頁序微調
-4. 匯出 1600×900 圖檔（未來教學網頁 `slides/` 播放器要用）
+4. 教學網頁時把 `簡報/圖檔/*.jpg` 複製到 `教學網頁/slides/`（播放器用，命名 slide01.jpg～slide15.jpg）
 5. 之後才是旁白動畫 4 段 → 教學網頁 → 對戰 → 上線
+
+## 🖼️ 重新匯出圖檔
+在專案根目錄執行（務必用 PowerPoint 匯出，字型才會正確；officecli 截圖會退回系統字型）：
+```powershell
+$f = "簡報\磁鐵的性質與運用_教學簡報.pptx"
+$o = "簡報\圖檔"
+New-Item -ItemType Directory -Force $o | Out-Null
+$ppt = New-Object -ComObject PowerPoint.Application
+$pres = $ppt.Presentations.Open((Resolve-Path $f), $true, $false, $false)
+for ($i = 1; $i -le $pres.Slides.Count; $i++) {
+  $name = "slide{0:D2}.jpg" -f $i
+  $pres.Slides.Item($i).Export((Join-Path (Resolve-Path $o) $name), "JPG", 1600, 900)
+}
+$pres.Close(); $ppt.Quit()
+```
 
 ## 🔧 重建簡報
 ```powershell
