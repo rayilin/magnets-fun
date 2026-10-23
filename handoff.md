@@ -16,16 +16,17 @@ GitHub Pages 部署成功：<https://rayilin.github.io/magnets-fun/>
 | 簡報圖檔 1600×900 ×24 | ✅ `教學網頁/slides/slide01–24.jpg`（PowerPoint COM 匯出） |
 | 教學網頁（11 區） | ✅ `教學網頁/index.html`，0 console error |
 | 測驗語音朗讀 | ✅「🔊 念題目」按鈕（Web Speech API、zh-TW、rate 0.9），換題／作答自動停止 |
-| 對戰（battle.html／server.js／30 題） | ✅ 區網模式可用；雲端後端**尚未部署** |
+| 對戰（battle.html／server.js／30 題） | ✅ 線上（Render）＋區網模式皆可用 |
 | 素材圖庫 147 張 | ✅ `media/img`＋`media/thumb`＋`images.js` |
 | 旁白動畫 4 段 MP4 | ❌ **未做**（規劃排在第二批） |
 | GitHub Pages | ✅ 公開 repo、workflow 部署成功 |
-| Render 對戰後端 | ⏸ 檔案已備（`render.yaml`＋`battle-server.js`），等老師登入 Render 按 Blueprint |
+| Render 對戰後端 | ✅ `https://magnets-battle.onrender.com`（免費方案，閒置 15 分休眠） |
 
 ## 🔗 網址
 - 首頁：<https://rayilin.github.io/magnets-fun/>
-- 對戰：<https://rayilin.github.io/magnets-fun/battle.html>
-- 答案檔：`.../questions.json` → **404（正確，已被 Pages 排除）**
+- 對戰：<https://rayilin.github.io/magnets-fun/battle.html>（自動連到 Render 後端）
+- 雲端後端：<https://magnets-battle.onrender.com>（`/api/health` 可確認是否醒著；這台也順便托管一份完整網站）
+- 答案檔：`.../questions.json` → **404（正確，Pages 與 Render 都擋掉）**
 - repo：<https://github.com/rayilin/magnets-fun>（PUBLIC）
 
 ## 📌 重要修正紀錄
@@ -41,15 +42,19 @@ GitHub Pages 部署成功：<https://rayilin.github.io/magnets-fun/>
   Chrome／Edge 在 Windows 有 Microsoft 雅婷／涵涵（zh-TW）；iPad Safari 亦有中文語音。
   按鈕會念「第 N 題＋題目＋A/B/C/D 選項」，再按一次停止；作答或換題會自動 `cancel()`。
   不支援的瀏覽器直接不顯示按鈕。若在 iPad 上沒聲音，先確認系統「設定 → 輔助使用 → 朗讀內容」與音量。
+- **雲端後端**：Render 免費方案（`magnets-battle`，Singapore）綁 `rayilin/magnets-fun`，
+  服務網址 <https://magnets-battle.onrender.com>；`教學網頁/battle-api.js` 寫死這個網址，
+  `index.html` 也有載入該檔（對戰說明文字會自動切成「線上版」）。
+  免費主機**閒置 15 分鐘休眠**，第一個人連線要等 30～60 秒：`battle.html` 已加自動重試
+  （每 5 秒一次、最多 90 秒，畫面顯示「正在喚醒對戰伺服器」），學生不用手動重整。
+  區網版（`start-battle.bat`）仍保留，沒網路時可用：把 `battle-api.js` 留空即可切回。
 
 ## ➡️ 下一步（依優先順序）
-1. **對戰後端**：Render → New + → Blueprint → 選 `rayilin/magnets-fun` → Apply。
-   拿到網址後改 `教學網頁/battle-api.js` 的 `window.BATTLE_API = 'https://xxx.onrender.com';` 再 push。
-2. **旁白動畫 4 段**（吸引什麼／磁極／相斥相吸／生活應用，各 12–15 秒）：
+1. **旁白動畫 4 段**（吸引什麼／磁極／相斥相吸／生活應用，各 12–15 秒）：
    用 `hyperframes` 技能，輸出放 `教學網頁/media/video/`，並在 `index.html` 加一段播放區塊
    （目前 `SLIDES/QUIZ/VIDEOS` 都沒有 mp4，`check_site.js` 不會要求）。
-3. 上課前實機驗收：單槍投影（簡報 24 頁）、平板開網頁（測驗／圖庫載入）、
-   對戰兩人配對（區網版 `start-battle.bat`）。
+2. 上課前實機驗收：單槍投影（簡報 24 頁）、平板開網頁（測驗／圖庫載入）、
+   對戰兩人配對（線上版先開一次 `/api/health` 喚醒；無網路則用區網版 `start-battle.bat`）。
 
 ## 🧰 重建指令（詳見 AGENTS.md）
 ```powershell
@@ -70,7 +75,8 @@ python 工具\build_images.py    # 147 張圖 → media/
 - 簡報內容為自行編寫＋課綱查證（INe-Ⅱ-7），**未逐字對照教科書頁面**，定稿前建議對一次
 
 ## 🕐 最後更新
-- 時間：2026-10-23 14:12
+- 時間：2026-10-23 15:58
 - 更新者：OpenCode（DeepSeek V4.1 Flash Free） @ DESKTOP-4475O68
-- Git：✅ 已推（`main`，commit `e24aed0` 加入測驗語音朗讀）
-- Pages：✅ 部署成功（run 39898832971／39909937037 success）
+- Git：✅ 已推（`main`，commit `f60a90f` 接上 Render 後端）
+- Pages：✅ 部署成功（run 39921009646 success）
+- 對戰後端：✅ <https://magnets-battle.onrender.com>（`/api/health` 200，兩人配對實測通過）
