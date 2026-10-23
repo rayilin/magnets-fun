@@ -50,10 +50,13 @@ GitHub Pages 部署成功：<https://rayilin.github.io/magnets-fun/>
   區網版（`start-battle.bat`）仍保留，沒網路時可用：把 `battle-api.js` 留空即可切回。
 
 ## ➡️ 下一步（依優先順序）
-1. **旁白動畫 4 段**（吸引什麼／磁極／相斥相吸／生活應用，各 12–15 秒）：
+1. **Render 上那份網站副本要手動同步**：Render 的 Auto-Deploy 沒開，跑到的還是舊版檔案
+   （功能不受影響，那份頁面走同源 `/api` 也能玩）。Render 後台 → `magnets-battle` →
+   右上 **Deploy → Manual Deploy**，或到 Settings 打開 **Auto-Deploy**。
+2. **旁白動畫 4 段**（吸引什麼／磁極／相斥相吸／生活應用，各 12–15 秒）：
    用 `hyperframes` 技能，輸出放 `教學網頁/media/video/`，並在 `index.html` 加一段播放區塊
    （目前 `SLIDES/QUIZ/VIDEOS` 都沒有 mp4，`check_site.js` 不會要求）。
-2. 上課前實機驗收：單槍投影（簡報 24 頁）、平板開網頁（測驗／圖庫載入）、
+3. 上課前實機驗收：單槍投影（簡報 24 頁）、平板開網頁（測驗／圖庫載入／語音朗讀）、
    對戰兩人配對（線上版先開一次 `/api/health` 喚醒；無網路則用區網版 `start-battle.bat`）。
 
 ## 🧰 重建指令（詳見 AGENTS.md）
@@ -75,8 +78,9 @@ python 工具\build_images.py    # 147 張圖 → media/
 - 簡報內容為自行編寫＋課綱查證（INe-Ⅱ-7），**未逐字對照教科書頁面**，定稿前建議對一次
 
 ## 🕐 最後更新
-- 時間：2026-10-23 15:58
+- 時間：2026-10-23 16:10
 - 更新者：OpenCode（DeepSeek V4.1 Flash Free） @ DESKTOP-4475O68
-- Git：✅ 已推（`main`，commit `f60a90f` 接上 Render 後端）
+- Git：✅ 已推（`main`，最新 commit `4c42983`；本次收工再加一筆 commit）
 - Pages：✅ 部署成功（run 39921009646 success）
 - 對戰後端：✅ <https://magnets-battle.onrender.com>（`/api/health` 200，兩人配對實測通過）
+- 本次 session 新增：①測驗語音朗讀 ②對戰接上 Render 雲端後端＋冷啟動自動重試 ③對戰圖示改 🧲
