@@ -1,0 +1,17 @@
+desktop.ini
+*.tmp
+~$*
+.env
+*.key
+credentials.*
+
+# 產出暫存
+node_modules/
+**/__pycache__/
+*.pyc
+**/_qa/
+*.log
+
+# 影音與字体大檔（需要時再個別加入）
+# 影片/plants/assets/fonts/
+# 影片/plants/deck/media/silent/
