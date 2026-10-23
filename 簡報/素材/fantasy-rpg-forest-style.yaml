@@ -1,0 +1,143 @@
+# ============================================================
+# 風格規格書：Fantasy RPG 森林藏寶場景
+# 來源：ai-batch-fantasy_rpg-1789652386945-v2.png（1376×768）
+# 分析日期：2026-10-23
+# 用途：可重複套用的圖像生成／設計風格指引
+# ============================================================
+
+meta:
+  source_image: "C:\\Users\\rayi\\Downloads\\85210\\ai-batch-fantasy_rpg-1789652386945-v2.png"
+  resolution: "1376 x 768"
+  aspect_ratio: "1.79:1（近 16:9 寬幅）"
+  medium: "數位手繪（digital painting）／遊戲場景概念美術"
+  genre: "奇幻 RPG 場景背景、找物解謎（hidden-object）插畫、童話繪本場景"
+  rendering: "高細節厚塗、無線稿、類油畫筆觸"
+
+identity:
+  one_liner: >
+    一棵巨大古樹的樹洞內部，被盤根錯節的樹根與發光植物包圍的祕密中庭；
+    中央天光灑落，四周藏著擬人化的樹精靈與發光的魔法蔬果。
+  feeling: "溫暖、茂密、魔法、可探索、略帶神祕但完全無害"
+  references:
+    - "奇幻 RPG 村莊／森林關卡的場景插畫"
+    - "兒童找物繪本（Where's Waldo 式的高密度細節）"
+    - "吉卜力式的自然崇拜 × 西方奇幻遊戲的魔法發光"
+  avoid:
+    - "寫實照片感、3D 渲染塑膠感"
+    - "冷硬科幻、賽博龐克霓虹"
+    - "恐怖、血腥、黑暗奇幻"
+    - "扁平向量插畫、極簡線稿"
+
+palette:
+  # 以畫面實際取樣（中位亮度 68／255，屬暗調背景 + 高亮點綴）
+  base:
+    - { hex: "#4D3422", role: "樹幹主體（暖棕）", share: "10.1%" }
+    - { hex: "#1D1815", role: "最深陰影／樹洞內側", share: "9.6%" }
+    - { hex: "#6E5133", role: "受光樹皮", share: "9.6%" }
+    - { hex: "#38251A", role: "樹根暗部", share: "8.0%" }
+    - { hex: "#494E31", role: "苔蘚／草地的暗綠", share: "7.6%" }
+    - { hex: "#A77645", role: "亮面木質（高光棕）", share: "7.3%" }
+    - { hex: "#697145", role: "中景植被（橄欖綠）", share: "6.5%" }
+    - { hex: "#BDC383", role: "受光草叢（黃綠）", share: "5.2%" }
+  accent:
+    - { hex: "#BB331D", role: "魔法番茄的火紅光", usage: "少量、集中、帶自發光" }
+    - { hex: "#B8602A", role: "胡蘿蔔橙／暖光暈", usage: "暖色主調的延伸" }
+    - { hex: "#B7A740", role: "玉米金黃／天光", usage: "光源與金屬質感" }
+    - { hex: "#45A69F", role: "發光蘑菇的青綠", usage: "冷色點綴，製造對比" }
+    - { hex: "#7B4BB7", role: "魔法葡萄的紫光（估算）", usage: "單一視覺焦點用" }
+    - { hex: "#449B51", role: "翡翠綠花椰的魔法光（估算）", usage: "與紫色形成互補" }
+  rules:
+    - "底色佔 80% 以上：暖棕 + 苔綠 + 橄欖，明度偏低"
+    - "彩色只出現在「魔法物件」上，每個色系集中成一團，不散落"
+    - "每一團彩色外圍都有 10–20% 的同色光暈（bloom）"
+    - "紅／橙（暖）與青綠／紫（冷）互補並置，形成視覺節奏"
+
+composition:
+  structure: "樹根盤繞形成的天然畫框（frame-within-frame）"
+  layout:
+    - "左右兩側＋上方：粗壯樹幹與藤蔓構成包覆式邊框，佔畫面約 25%"
+    - "中央：向下延伸的草地小徑，作為視線引導線（leading line）"
+    - "上緣中央：樹冠缺口透出天光，形成光源與視覺重心"
+    - "魔法物件沿著中景的『根之平台』排列成弧形，像展示架"
+  density: "極高（幾乎沒有空白區），但用明暗與光暈分層，避免雜亂"
+  depth_layers:
+    - "前景：失焦的大葉片、蘑菇（略暗、模糊）"
+    - "中景：主要物件與小精靈（最清晰、最高對比）"
+    - "背景：樹洞深處的暖光（霧化、低對比）"
+  focal_points:
+    - "正中央的天光柱（第一眼）"
+    - "左側火焰番茄（最強暖色）"
+    - "右側發光花椰（最強冷色）"
+
+lighting:
+  key: "由上而下的體積光（god rays），穿過樹冠縫隙"
+  quality: "柔中帶硬——光柱邊緣柔和，被照到的物件邊緣有銳利 rim light"
+  secondary:
+    - "魔法物件的自發光（emissive），光是從物件本身往外擴散"
+    - "青綠蘑菇的冷色補光，分布在下緣與陰影處"
+  contrast: "高對比、低鍵調（low-key）；暗部仍保留細節，不死黑"
+  atmosphere: "空氣中的光塵、孢子、微霧，強化深度"
+
+texture:
+  brushwork: "厚塗（impasto）手感，可見筆觸方向；樹皮用短促堆疊筆觸，苔蘚用點描"
+  edges: "無硬線稿；靠明度差與色溫差定義輪廓"
+  detail_level: "近看有細節、遠看有整體形狀；物件內部有 2–3 層明暗轉折"
+  surface:
+    - "樹皮：乾裂、縱向紋理、附著苔蘚與蘑菇"
+    - "蔬果：飽滿、有蠟質高光與水珠"
+    - "草地：蓬鬆、碎筆觸、深淺交錯"
+  stylization: "形狀略微誇張圓潤（卡通比例），但上色寫實"
+
+motifs:
+  props:
+    - "發光魔法蔬果：番茄（火）、玉米（金）、葡萄（紫）、花椰菜（翡翠）、胡蘿蔔（橙）"
+    - "發光蘑菇（青綠、紫、粉）、蕈傘成叢出現在邊角"
+    - "藤編籃子、麻布袋、小藥瓶、吊掛的提燈"
+    - "樹皮上刻的北歐符文（青綠發光）"
+  characters:
+    - "樹精靈（tree sprite）：樹枝手腳、樹皮身體、兩片葉子當頭飾、小黑點眼睛"
+    - "造型圓潤、約畫面高度 1/10，散落在各處當彩蛋"
+    - "表情中性可愛，無威脅感"
+  scale_cues: "巨大化的蔬果（比精靈還大）製造童話比例"
+
+mood:
+  - "warm / cozy 溫暖"
+  - "whimsical 童趣"
+  - "magical 魔法感"
+  - "lush / overgrown 茂密"
+  - "inviting adventure 想進去探索"
+
+prompt:
+  positive: >
+    hand-painted fantasy RPG environment concept art, interior of a giant hollow tree,
+    dense intertwined roots forming a natural frame around a sunlit clearing,
+    volumetric god rays falling from a canopy gap, floating dust motes,
+    glowing magical giant vegetables (fire tomatoes, golden corn, purple grapes,
+    emerald broccoli, orange carrots) each wrapped in a soft colored aura,
+    bioluminescent teal mushrooms clustered in the shadows, carved glowing runes on bark,
+    tiny wooden tree-sprite creatures with twig limbs and leaf headdresses hiding in the scene,
+    woven baskets and small potion bottles, mossy bark texture, impasto brushwork,
+    no outlines, low-key warm brown and olive palette with punchy complementary accents,
+    extremely detailed hidden-object illustration, storybook whimsy, 16:9 wide composition
+  negative: >
+    photorealistic, 3D render, plastic, low detail, flat vector, minimalist, line art,
+    horror, gore, dark fantasy, grim, cyberpunk, neon sci-fi, text, watermark, logo,
+    empty space, blown-out highlights, muddy colors
+  parameters:
+    aspect_ratio: "16:9 或 1.79:1"
+    recommended_size: "1920 x 1080（原始 1376×768 可放大）"
+    style_strength: "中高（保留手繪筆觸，不要過度平滑）"
+    guidance: "強調『光從物件內部發出』與『樹根當畫框』兩個結構特徵"
+
+usage_notes:
+  good_for:
+    - "RPG 遊戲關卡背景／找物遊戲場景"
+    - "童書、教材封面、自然科『植物的構造』單元插圖（蔬果擬人化）"
+    - "桌遊地圖、卡片遊戲場景"
+  watch_out:
+    - "細節過密時縮圖會糊：小尺寸輸出要減少 props 數量"
+    - "發光色一多會互相搶戲：一次只用 2–3 個彩色焦點"
+    - "繁體中文字不要交給圖像模型生成，另用排版疊字"
+  pairing:
+    with_typography: "圓體／手寫感的黑體（如源石黑體、jf open 粉圓），標題可用金黃 #B7A740"
+    with_layout: "中央留白區放標題，四周細節自然形成裝飾邊框"

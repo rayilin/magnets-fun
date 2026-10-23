@@ -15,3 +15,7 @@ node_modules/
 # 影音與字体大檔（需要時再個別加入）
 # 影片/plants/assets/fonts/
 # 影片/plants/deck/media/silent/
+
+# 簡報背景底圖：由 src/gen_bg2.py 從 素材/風格參考圖.png 重新產生（約 18 MB）
+簡報/src/bg/
+簡報/src/ops.json
