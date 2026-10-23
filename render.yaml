@@ -1,0 +1,18 @@
+﻿# Render 免費方案部署設定（藍圖檔）
+#
+# 用法：Render 後台 → New + → Blueprint → 選這個 repo → Apply。
+# 部署完成後，把網址填進 教學網頁/battle-api.js 的 window.BATTLE_API。
+#
+# 免費方案閒置 15 分鐘會休眠，第一次連線要等 30～60 秒。
+services:
+  - type: web
+    name: magnets-battle
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: echo "免建置，直接執行"
+    startCommand: node battle-server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
