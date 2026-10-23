@@ -110,7 +110,13 @@
   .quiz{max-width:760px; margin:0 auto}
   .qcard{padding:28px}
   .qimg{max-height:170px; margin:0 auto 18px}
-  .qtext{font-size:21px; font-weight:700; margin:0 0 20px; line-height:1.6}
+  .qhead{display:flex; gap:12px; align-items:flex-start; margin:0 0 20px}
+  .qtext{font-size:21px; font-weight:700; margin:0; line-height:1.6; flex:1}
+  .speak{flex:none; display:inline-flex; align-items:center; gap:6px; border:1.5px solid var(--line);
+         background:#fff; color:var(--ink); border-radius:999px; padding:8px 15px; font-size:13.5px;
+         font-family:inherit; cursor:pointer; white-space:nowrap; line-height:1.4; transition:.15s}
+  .speak:hover{border-color:var(--accent); color:var(--accent)}
+  .speak.on{background:var(--accent); border-color:var(--accent); color:#fff}
   .qopts{display:grid; gap:10px}
   .qopt{display:flex; gap:12px; align-items:flex-start; text-align:left; padding:14px 16px;
         border:1.5px solid var(--line); background:#fff; border-radius:12px; cursor:pointer;
@@ -210,6 +216,8 @@
     .grid{grid-template-columns:repeat(3,1fr)}
     .hero h1{font-size:34px}
     .qtext{font-size:18px}
+    .qhead{flex-direction:column; gap:10px}
+    .speak{align-self:flex-start}
     .draw-num{font-size:56px}
   }
 </style>
@@ -340,7 +348,7 @@
   <div class="wrap">
     <p class="eyebrow">課堂測驗</p>
     <h2>10 題，檢查你懂了嗎</h2>
-    <p class="lead">每題選一個答案，選完會告訴你對錯和原因。做完看總分。</p>
+    <p class="lead">每題選一個答案，選完會告訴你對錯和原因。做完看總分。聽不懂題目時，按「🔊 念題目」就會念給你聽。</p>
     <div class="quiz card qcard" id="quizBox"></div>
   </div>
 </section>
@@ -682,27 +690,87 @@ function goSlide(n){
   goSlide(0);
 })();
 
+/* ═══════════ 語音朗讀（Web Speech API） ═══════════ */
+const SPEECH_OK = ('speechSynthesis' in window) && (typeof SpeechSynthesisUtterance !== 'undefined');
+let speakBtnOn = null, zhVoice = null;
+
+function pickZhVoice(){
+  if (!SPEECH_OK) return null;
+  const vs = window.speechSynthesis.getVoices() || [];
+  if (!vs.length) return null;
+  const res = [/zh[-_]TW/i, /Chinese.*(Taiwan|Traditional)/i, /Hanhan|Yating|HsiaoChen|Zhiwei|Tingting/i, /^zh/i];
+  for (const re of res){
+    const v = vs.find(x => re.test((x.lang || '') + ' ' + (x.name || '')));
+    if (v) return v;
+  }
+  return null;
+}
+if (SPEECH_OK){
+  zhVoice = pickZhVoice();
+  if (typeof window.speechSynthesis.addEventListener === 'function'){
+    window.speechSynthesis.addEventListener('voiceschanged', () => { zhVoice = pickZhVoice(); });
+  }
+}
+function stopSpeak(){
+  if (!SPEECH_OK) return;
+  try { window.speechSynthesis.cancel(); } catch (e) {}
+  if (speakBtnOn){
+    speakBtnOn.classList.remove('on');
+    speakBtnOn.textContent = '🔊 念題目';
+    speakBtnOn = null;
+  }
+}
+function speakText(text, btn){
+  if (!SPEECH_OK){ toast('這個瀏覽器不支援語音朗讀，請改用 Chrome、Edge 或 Safari'); return; }
+  if (btn.classList.contains('on')){ stopSpeak(); return; }
+  stopSpeak();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-TW'; u.rate = 0.9; u.pitch = 1; u.volume = 1;
+  const v = zhVoice || pickZhVoice(); if (v) u.voice = v;
+  const done = () => {
+    if (speakBtnOn === btn){ btn.classList.remove('on'); btn.textContent = '🔊 念題目'; speakBtnOn = null; }
+  };
+  u.onend = done; u.onerror = done;
+  speakBtnOn = btn; btn.classList.add('on'); btn.textContent = '⏹ 停止';
+  window.speechSynthesis.speak(u);
+}
+function quizSpeech(q, idx){
+  return `第 ${idx + 1} 題。${q.q}。選項：` + q.o.map((o, k) => `${'ABCD'[k]}，${o}`).join('。') + '。';
+}
+
 /* ═══════════ 測驗 ═══════════ */
 (function quiz(){
   const box = $('#quizBox');
   let i = 0, score = 0, log = [];
 
   function start(){
+    stopSpeak();
     i = 0; score = 0; log = []; render();
   }
   function render(){
+    stopSpeak();
     if (i >= QUIZ.length) return result();
     const q = QUIZ[i];
+    const speakBtn = SPEECH_OK
+      ? `<button class="speak" id="qSpeak" type="button" title="朗讀題目與選項">🔊 念題目</button>` : '';
     box.innerHTML = `
       ${q.img ? `<img class="qimg" src="${q.img}" alt="題目附圖">` : ''}
-      <p class="qtext">${i + 1}. ${q.q}</p>
+      <div class="qhead">
+        <p class="qtext">${i + 1}. ${q.q}</p>
+        ${speakBtn}
+      </div>
       <div class="qopts">${q.o.map((o, k) =>
         `<button class="qopt" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span>${o}</span></button>`).join('')}</div>
       <div class="qfb" id="qfb"></div>
       <div class="qbar"><span>第 ${i + 1} / ${QUIZ.length} 題</span><span>答對 ${score} 題</span></div>`;
     box.querySelectorAll('.qopt').forEach(b => b.addEventListener('click', () => pick(parseInt(b.dataset.k, 10))));
+    if (SPEECH_OK){
+      const sb = box.querySelector('#qSpeak');
+      sb.addEventListener('click', () => speakText(quizSpeech(q, i), sb));
+    }
   }
   function pick(k){
+    stopSpeak();
     const q = QUIZ[i];
     box.querySelectorAll('.qopt').forEach((b, idx) => {
       b.disabled = true;
