@@ -174,6 +174,8 @@
   .offline ol{margin:18px 0 22px; padding-left:1.4em; color:var(--sub); font-size:15px}
   .offline li{margin:9px 0}
   .offline .bigicon{font-size:44px; margin-bottom:6px}
+  .offline .bigicon.waking{animation:bob 1.6s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
   .offline .btn{width:100%; max-width:320px}
   .offline code{word-break:break-all}
 
@@ -326,7 +328,13 @@
   }
 
   /* ── 啟動 ── */
-  function boot() {
+  var wakeTimer = 0;
+  var WAKE_MS = 5000;      // 每 5 秒重試一次
+  var WAKE_TRIES = 18;     // 最多等 90 秒（免費主機冷啟動約 30～60 秒）
+
+  function boot(attempt) {
+    attempt = attempt || 0;
+    clearTimeout(wakeTimer);
     fetch(api('/api/health'), { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error('bad'); return r.json(); })
       .then(function (d) {
@@ -334,13 +342,33 @@
         state.health = d;
         renderLobby();
       })
-      .catch(function () { renderOffline(); });
+      .catch(function () {
+        /* 雲端免費主機閒置會休眠：自動重試，不要讓學生一開就看到錯誤 */
+        if (API_BASE && attempt < WAKE_TRIES) {
+          renderWaking(attempt);
+          wakeTimer = setTimeout(function () { boot(attempt + 1); }, WAKE_MS);
+          return;
+        }
+        renderOffline();
+      });
+  }
+
+  /* ── 畫面：喚醒中 ── */
+  function renderWaking(attempt) {
+    var secs = attempt * Math.round(WAKE_MS / 1000);
+    app.innerHTML =
+      '<div class="card offline">' +
+        '<div class="bigicon waking">☕</div>' +
+        '<h1>正在喚醒對戰伺服器</h1>' +
+        '<p class="sub">免費主機閒置後會休眠，第一次連線大約要等 30～60 秒。畫面會自動繼續，不用重新整理。</p>' +
+        '<p class="tiny">' + (secs ? '已等待 ' + secs + ' 秒・自動重試中…' : '連線中…') + '</p>' +
+      '</div>';
   }
 
   /* ── 畫面：大廳 ── */
   function renderLobby() {
     var saved = '';
-    try { saved = localStorage.getItem('plantBattleName') || ''; } catch (e) {}
+    try { saved = localStorage.getItem('magnetBattleName') || localStorage.getItem('plantBattleName') || ''; } catch (e) {}
     var waitingCount = (state.health && state.health.waiting) || 0;
     var mini = waitingCount > 0
       ? '目前有 <b>' + waitingCount + '</b> 人正在等待配對'
@@ -348,7 +376,7 @@
 
     app.innerHTML =
       '<div class="card lobby">' +
-        '<div class="leaf">🌱</div>' +
+        '<div class="leaf">🧲</div>' +
         '<h1>磁鐵知識王</h1>' +
         '<p class="sub">兩人一室・搶答 10 題・答對 +1，答錯不扣分</p>' +
         '<label for="name">你的名字</label>' +
@@ -417,7 +445,7 @@
       state.myId = d.id;
       state.token = d.token;
       state.myName = d.name;
-      try { localStorage.setItem('plantBattleName', d.name); } catch (e) {}
+      try { localStorage.setItem('magnetBattleName', d.name); } catch (e) {}
       connect();
       renderWaiting();
     }).catch(function () {
@@ -520,7 +548,7 @@
   function renderWaiting() {
     app.innerHTML =
       '<div class="card waiting">' +
-        '<div class="radar"><span></span><span></span><b>🌱</b></div>' +
+        '<div class="radar"><span></span><span></span><b>🧲</b></div>' +
         '<h1>等待另一位玩家…</h1>' +
         '<p class="sub">你以 <b>' + esc(state.myName) + '</b> 加入，配對成功會自動開始。</p>' +
         '<div class="waitline"><i></i></div>' +
@@ -742,7 +770,7 @@
     var title = tie ? '平手！' : (win ? '你贏了！' : '對手獲勝');
     var sub = tie ? '兩人都很厲害，再來一場分勝負。'
       : (win ? '反應快又答得對，太強了！' : '別灰心，下一場追回來。');
-    var icon = tie ? '🤝' : (win ? '🏆' : '🌱');
+    var icon = tie ? '🤝' : (win ? '🏆' : '💪');
 
     app.innerHTML =
       '<div class="card result">' +
