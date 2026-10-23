@@ -45,6 +45,6 @@ python build.py
 - 簡報內容為自行編寫＋課綱查證，**未逐字對照教科書頁面**，定稿前建議對一次版本內容
 
 ## 🕐 最後更新
-- 時間：2026-10-23 11:35
+- 時間：2026-10-23 11:38
 - 更新者：OpenCode（DeepSeek V4.1 Flash Free） @ DESKTOP-4475O68
-- Git push：見下方 commit
+- Git push：✅ 已推（commit e45779b，`main`）
