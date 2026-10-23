@@ -10,7 +10,7 @@ services:
     runtime: node
     plan: free
     region: singapore
-    buildCommand: echo "免建置，直接執行"
+    buildCommand: echo "no build step"
     startCommand: node battle-server.js
     healthCheckPath: /api/health
     envVars:
