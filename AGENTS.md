@@ -104,6 +104,9 @@ python 工具\build_images.py
   上層 `natural-science-teaching-column` 已把本資料夾加入 `.gitignore`。
 - 參考範本：`..\115-1_三上自然_植物的構造和生長\`（已完成上線）
 - 可重用技能：`teaching-site`、`officecli`、`hyperframes`（動畫）、`draw-free`／`draw-gemini`
+- **本專案的完整製作流程已封裝成技能 `teaching-unit-site`**
+  （`C:\Users\rayi\.config\opencode\skills\teaching-unit-site\`，內含 Windows COM 轉檔腳本、
+  `verify_site.js` 驗收腳本、Pages／Render 範本、單元專案骨架產生器）。下次做別的單元直接載入該技能。
 
 ## 工作約定
 - 任何 Agent、任何電腦：**開工先讀 `handoff.md`，收工必更新 `handoff.md`**
